@@ -1,6 +1,6 @@
 # Frozen bench protocol. Bump configs.version when exam IDs or formulas change.
 name: maxwellbench
-version: 0.1.0
+version: 0.1.1
 splits:
   exam_never_train: true
   k_shot: [0, 8, 32, 128]

@@ -1,5 +1,79 @@
 {
   "regime": "photonic",
-  "note": "Frozen exam IDs land here. Each item: citation, dimensions, materials, wavelengths, raster_hash.",
-  "items": []
+  "oracle": "analytic",
+  "items": [
+    {
+      "id": "pho.tmm.ar",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [1.224744871],
+        "d_layers": [1.122474487e-7],
+        "n0": 1.0,
+        "ns": 1.5,
+        "theta0": 0.0,
+        "pol": "TE",
+        "frequencies_hz": [4.8e14, 5.0e14, 5.450845e14, 5.6e14, 5.8e14],
+        "field_hz": 5.450845e14
+      },
+      "grid": {"z": [-4.0e-7, 4.0e-7], "nz": 256}
+    },
+    {
+      "id": "pho.tmm.dbr",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [2.4, 1.44, 2.4, 1.44, 2.4, 1.44, 2.4, 1.44, 2.4, 1.44, 2.4, 1.44],
+        "d_layers": [1.614583e-7, 2.691e-7, 1.614583e-7, 2.691e-7, 1.614583e-7, 2.691e-7, 1.614583e-7, 2.691e-7, 1.614583e-7, 2.691e-7, 1.614583e-7, 2.691e-7],
+        "n0": 1.0,
+        "ns": 1.44,
+        "theta0": 0.0,
+        "pol": "TE",
+        "frequencies_hz": [1.8e14, 1.87e14, 1.934e14, 2.0e14, 2.1e14],
+        "field_hz": 1.934e14
+      },
+      "grid": {"z": [-1.0e-6, 4.0e-6], "nz": 512}
+    },
+    {
+      "id": "pho.slab.si",
+      "oracle": "slab2d",
+      "params": {
+        "n_slab": 3.48,
+        "thickness": 2.2e-7,
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.3490658504,
+        "pol": "TE",
+        "frequency_hz": 1.934e14
+      },
+      "grid": {"x": [-2.0e-6, 2.0e-6], "nx": 64, "z": [-1.0e-6, 1.5e-6], "nz": 96}
+    },
+    {
+      "id": "pho.tmm.sin",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [2.0],
+        "d_layers": [1.9375e-7],
+        "n0": 1.0,
+        "ns": 1.45,
+        "theta0": 0.0,
+        "pol": "TM",
+        "frequencies_hz": [1.8e14, 1.934e14, 2.1e14],
+        "field_hz": 1.934e14
+      },
+      "grid": {"z": [-5.0e-7, 8.0e-7], "nz": 256}
+    },
+    {
+      "id": "pho.slab.sio2",
+      "oracle": "slab2d",
+      "params": {
+        "n_slab": 1.46,
+        "thickness": 1.0e-6,
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.5235987756,
+        "pol": "TE",
+        "frequency_hz": 4.738e14
+      },
+      "grid": {"x": [-3.0e-6, 3.0e-6], "nx": 64, "z": [-1.5e-6, 2.5e-6], "nz": 96}
+    }
+  ]
 }

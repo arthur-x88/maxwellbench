@@ -1,0 +1,166 @@
+{
+  "bench": "maxwellbench",
+  "version": "0.1.1",
+  "baseline": "incident",
+  "summary": {
+    "n_items": 15,
+    "n_scored": 15,
+    "e_nrmse_aligned_mean": 0.7383090728004884,
+    "s_wmae_db_mean": 84.09491160265556
+  },
+  "items": [
+    {
+      "id": "pho.tmm.ar",
+      "regime": "photonic",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 97.99392814644628,
+      "s_phase_mae_deg": 79.97609609399441,
+      "s_complex_rmse": 0.9821225906028548,
+      "e_nrmse": 0.6598611865572064,
+      "e_nrmse_aligned": 0.5864032820842269
+    },
+    {
+      "id": "pho.tmm.dbr",
+      "regime": "photonic",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 130.55317565449892,
+      "s_phase_mae_deg": 61.275785295635444,
+      "s_complex_rmse": 0.9572411383370051,
+      "e_nrmse": 1.6204402797136541,
+      "e_nrmse_aligned": 1.620275850707773
+    },
+    {
+      "id": "pho.slab.si",
+      "regime": "photonic",
+      "oracle": "slab2d",
+      "missing": false,
+      "e_nrmse": 1.3381470839935206,
+      "e_nrmse_aligned": 1.0508768279133982
+    },
+    {
+      "id": "pho.tmm.sin",
+      "regime": "photonic",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 117.21891315873519,
+      "s_phase_mae_deg": 105.22072584690336,
+      "s_complex_rmse": 1.0033928352673285,
+      "e_nrmse": 0.9079619611162102,
+      "e_nrmse_aligned": 0.8127972840547788
+    },
+    {
+      "id": "pho.slab.sio2",
+      "regime": "photonic",
+      "oracle": "slab2d",
+      "missing": false,
+      "e_nrmse": 1.0465157316150202,
+      "e_nrmse_aligned": 0.9453076989206727
+    },
+    {
+      "id": "mw.wg.te10_xband",
+      "regime": "microwave",
+      "oracle": "te10",
+      "missing": false,
+      "s_wmae_db": 5.785964799315131e-16,
+      "s_phase_mae_deg": 50.95721805796289,
+      "s_complex_rmse": 1.0672968267640308,
+      "e_nrmse": 1.530184828957733,
+      "e_nrmse_aligned": 1.2622565654590767
+    },
+    {
+      "id": "mw.wg.te10_cutoff",
+      "regime": "microwave",
+      "oracle": "te10",
+      "missing": false,
+      "s_wmae_db": 12.760084186425736,
+      "s_phase_mae_deg": 0.0,
+      "s_complex_rmse": 0.6487139332401737,
+      "e_nrmse": 2.4095130163623173,
+      "e_nrmse_aligned": 2.2275484079853776
+    },
+    {
+      "id": "mw.tmm.radome",
+      "regime": "microwave",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 117.85336239266094,
+      "s_phase_mae_deg": 57.80693469358465,
+      "s_complex_rmse": 1.167634814956735,
+      "e_nrmse": 0.7719945516752458,
+      "e_nrmse_aligned": 0.6544743436681877
+    },
+    {
+      "id": "mw.slab.plexiglas",
+      "regime": "microwave",
+      "oracle": "slab2d",
+      "missing": false,
+      "e_nrmse": 0.9100114972546682,
+      "e_nrmse_aligned": 0.6769660331041113
+    },
+    {
+      "id": "mw.tmm.window",
+      "regime": "microwave",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 117.14249811047515,
+      "s_phase_mae_deg": 107.90747324779352,
+      "s_complex_rmse": 0.9371972459301317,
+      "e_nrmse": 0.7817918060008447,
+      "e_nrmse_aligned": 0.7406427309463618
+    },
+    {
+      "id": "brd.tmm.fr4",
+      "regime": "board",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 112.10507527509832,
+      "s_phase_mae_deg": 100.57146422092747,
+      "s_complex_rmse": 0.35288030164218365,
+      "e_nrmse": 0.2619046430358294,
+      "e_nrmse_aligned": 0.13551585132220245
+    },
+    {
+      "id": "brd.tmm.stripline",
+      "regime": "board",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 109.53470633904558,
+      "s_phase_mae_deg": 96.18357747163537,
+      "s_complex_rmse": 0.2257659414457393,
+      "e_nrmse": 0.16500002266115765,
+      "e_nrmse_aligned": 0.06461882154088171
+    },
+    {
+      "id": "brd.wg.coupon",
+      "regime": "board",
+      "oracle": "te10",
+      "missing": false,
+      "s_wmae_db": 2.4108186663813044e-16,
+      "s_phase_mae_deg": 36.266100267364294,
+      "s_complex_rmse": 0.8540212840667333,
+      "e_nrmse": 0.5177754703871422,
+      "e_nrmse_aligned": 0.265062067129211
+    },
+    {
+      "id": "brd.tmm.prepreg",
+      "regime": "board",
+      "oracle": "tmm",
+      "missing": false,
+      "s_wmae_db": 109.88228436582514,
+      "s_phase_mae_deg": 96.86756353802107,
+      "s_complex_rmse": 0.25512870635535156,
+      "e_nrmse": 0.1364634961603466,
+      "e_nrmse_aligned": 0.030895226609887333
+    },
+    {
+      "id": "brd.slab.soldermask",
+      "regime": "board",
+      "oracle": "slab2d",
+      "missing": false,
+      "e_nrmse": 0.002986520687123952,
+      "e_nrmse_aligned": 0.0009951005611783241
+    }
+  ]
+}

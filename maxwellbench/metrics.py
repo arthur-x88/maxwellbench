@@ -41,6 +41,21 @@ def field_nrmse(pred: np.ndarray, gt: np.ndarray) -> float:
     return float(num / den)
 
 
+def align_global_phase(pred: np.ndarray, gt: np.ndarray) -> np.ndarray:
+    """Multiply pred by a unit complex so <pred, gt> is real and positive."""
+    p = np.asarray(pred)
+    g = np.asarray(gt)
+    ip = np.vdot(p, g)
+    if np.abs(ip) < EPS:
+        return p
+    return p * (ip / np.abs(ip))
+
+
+def field_nrmse_aligned(pred: np.ndarray, gt: np.ndarray) -> float:
+    """nRMSE after a single global phase. Source phase is not a degree of freedom we score."""
+    return field_nrmse(align_global_phase(pred, gt), gt)
+
+
 def area_over_random(err_method: np.ndarray, err_rand: np.ndarray, b: np.ndarray) -> float:
     """Mean(e_rand - e_method) along solver-call axis b."""
     if err_method.shape != err_rand.shape or err_method.shape != b.shape:

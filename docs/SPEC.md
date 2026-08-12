@@ -1,6 +1,6 @@
 # MaxwellBench specification
 
-Status: draft, frozen-split pending. Version the YAML in `configs/bench.yaml`, not this prose.
+Status: v0.1.1 scores a frozen **analytic** exam (TMM, slab, TE10). Meep/openEMS items are specified and not in the manifests yet. Version the YAML in `configs/bench.yaml`, not this prose.
 
 ## Purpose
 

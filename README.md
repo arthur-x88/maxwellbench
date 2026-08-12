@@ -4,7 +4,7 @@ A public evaluation harness for electromagnetic foundation models.
 
 Most neural Maxwell papers train and score on a private set drawn from one template family: one patch antenna, one metasurface, one board stackup. Those numbers do not transfer. There is also no public corpus of Maxwell solutions large enough to train on, so every group builds its own data and its own exam.
 
-MaxwellBench is the exam. Training data is produced with public solvers. Held-out items are recreated from published structures. A result counts if one set of weights generalizes across regimes, and if the model allocates a fixed simulation budget better than a random or expert grid.
+MaxwellBench is the exam. v0.1.1 scores forward fields and S-parameters on 15 frozen closed-form items (layered media, slabs, TE10). A later freeze will add Meep / openEMS 3D structures. Inverse design and active learning are specified and not scored yet.
 
 ## Community
 
@@ -37,12 +37,9 @@ Exam items are recreated from published papers (IEEE TAP, Meep inverse-design ex
 
 ## Data
 
-1. Solvers are public: Meep and openEMS. HFSS and CST are not dependencies.
-2. The training corpus is generated here: on the order of 10⁵ to 10⁶ geometry-to-field pairs per regime, sampled from expert-seeded templates.
-3. Published structures are the exam. They are listed, hashed, and frozen.
-4. The split is public. Recipes that make the next million samples cheaper may stay private.
+Exam truth is produced by the oracles in `maxwellbench/oracles.py` from the JSON in `data/manifests/`. There is no field dump to download. See [docs/PREDICTIONS.md](docs/PREDICTIONS.md).
 
-Report speed and error against Meep or openEMS on the same geometry. A commercial-solver comparison belongs in an appendix, with the project file and the mesh recipe.
+Meep and openEMS are the planned 3D oracles. They are not required to sit the current exam. HFSS and CST are not dependencies.
 
 ## Layout
 
@@ -56,7 +53,14 @@ data/manifests/ exam IDs (empty until items are recreated and hashed)
 
 ## Status
 
-v0.1 is the specification and a small Python harness. The solver farm and the first frozen exam list are not in this commit.
+v0.1.1 is a runnable forward exam: 15 analytic items, a scorer, and an incident-wave baseline. The 3D FDTD exam, inverse track, and active-learn track are not shipping.
+
+```bash
+pip install -e .
+maxwellbench-eval --baseline incident --out scores.json
+```
+
+Published incident baseline (see `data/baselines/incident.json`): mean aligned field nRMSE 0.738, mean S-parameter wMAE 84.1 dB. Beat both.
 
 ## Install
 

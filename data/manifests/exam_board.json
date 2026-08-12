@@ -1,5 +1,77 @@
 {
   "regime": "board",
-  "note": "Frozen exam IDs land here. Each item: citation, stackup, ports, frequencies_ghz, raster_hash.",
-  "items": []
+  "oracle": "analytic",
+  "items": [
+    {
+      "id": "brd.tmm.fr4",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [2.0],
+        "d_layers": [0.0016],
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.0,
+        "pol": "TE",
+        "frequencies_hz": [1.0e9, 2.4e9, 5.0e9, 10.0e9],
+        "field_hz": 5.0e9
+      },
+      "grid": {"z": [-0.005, 0.008], "nz": 256}
+    },
+    {
+      "id": "brd.tmm.stripline",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [2.2, 2.2],
+        "d_layers": [0.0002, 0.0002],
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.0,
+        "pol": "TE",
+        "frequencies_hz": [1.0e9, 5.0e9, 10.0e9, 20.0e9],
+        "field_hz": 10.0e9
+      },
+      "grid": {"z": [-0.002, 0.003], "nz": 256}
+    },
+    {
+      "id": "brd.wg.coupon",
+      "oracle": "te10",
+      "params": {
+        "a": 0.015,
+        "length": 0.02,
+        "n": 2.0,
+        "frequencies_hz": [8.0e9, 10.0e9, 12.0e9, 16.0e9],
+        "field_hz": 12.0e9
+      },
+      "grid": {"x": [0.0, 0.015], "nx": 64, "z": [0.0, 0.02], "nz": 96}
+    },
+    {
+      "id": "brd.tmm.prepreg",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [1.9, 2.2, 1.9],
+        "d_layers": [0.0001, 0.0002, 0.0001],
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.0,
+        "pol": "TM",
+        "frequencies_hz": [2.0e9, 5.0e9, 10.0e9, 28.0e9],
+        "field_hz": 10.0e9
+      },
+      "grid": {"z": [-0.001, 0.002], "nz": 256}
+    },
+    {
+      "id": "brd.slab.soldermask",
+      "oracle": "slab2d",
+      "params": {
+        "n_slab": 1.55,
+        "thickness": 2.0e-5,
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.1745329252,
+        "pol": "TE",
+        "frequency_hz": 10.0e9
+      },
+      "grid": {"x": [-0.01, 0.01], "nx": 48, "z": [-0.002, 0.002], "nz": 96}
+    }
+  ]
 }

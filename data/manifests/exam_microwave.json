@@ -1,5 +1,74 @@
 {
   "regime": "microwave",
-  "note": "Frozen exam IDs land here. Each item: citation, dimensions, materials, ports, frequencies_ghz, raster_hash.",
-  "items": []
+  "oracle": "analytic",
+  "items": [
+    {
+      "id": "mw.wg.te10_xband",
+      "oracle": "te10",
+      "params": {
+        "a": 0.02286,
+        "length": 0.10,
+        "n": 1.0,
+        "frequencies_hz": [8.0e9, 9.0e9, 10.0e9, 11.0e9, 12.0e9],
+        "field_hz": 10.0e9
+      },
+      "grid": {"x": [0.0, 0.02286], "nx": 64, "z": [0.0, 0.10], "nz": 128}
+    },
+    {
+      "id": "mw.wg.te10_cutoff",
+      "oracle": "te10",
+      "params": {
+        "a": 0.02286,
+        "length": 0.05,
+        "n": 1.0,
+        "frequencies_hz": [5.0e9, 5.5e9, 6.0e9, 6.2e9, 6.4e9],
+        "field_hz": 6.0e9
+      },
+      "grid": {"x": [0.0, 0.02286], "nx": 64, "z": [0.0, 0.05], "nz": 96}
+    },
+    {
+      "id": "mw.tmm.radome",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [2.0],
+        "d_layers": [0.005],
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.0,
+        "pol": "TE",
+        "frequencies_hz": [8.0e9, 9.0e9, 10.0e9, 11.0e9, 12.0e9],
+        "field_hz": 10.0e9
+      },
+      "grid": {"z": [-0.02, 0.03], "nz": 256}
+    },
+    {
+      "id": "mw.slab.plexiglas",
+      "oracle": "slab2d",
+      "params": {
+        "n_slab": 1.6,
+        "thickness": 0.01,
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.5235987756,
+        "pol": "TE",
+        "frequency_hz": 10.0e9
+      },
+      "grid": {"x": [-0.04, 0.04], "nx": 64, "z": [-0.02, 0.03], "nz": 96}
+    },
+    {
+      "id": "mw.tmm.window",
+      "oracle": "tmm",
+      "params": {
+        "n_layers": [2.5],
+        "d_layers": [0.003],
+        "n0": 1.0,
+        "ns": 1.0,
+        "theta0": 0.2617993878,
+        "pol": "TM",
+        "frequencies_hz": [2.0e9, 5.0e9, 10.0e9, 18.0e9],
+        "field_hz": 10.0e9
+      },
+      "grid": {"z": [-0.01, 0.015], "nz": 256}
+    }
+  ]
 }
