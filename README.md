@@ -1,80 +1,80 @@
 # MaxwellBench
 
-Public evaluation harness for electromagnetic foundation models.
+A public evaluation harness for electromagnetic foundation models.
 
-There is no ImageNet for Maxwell. Literature surrogates are trained and scored on private, single-family sets (one patch antenna, one metasurface class, one board stackup). Arena Physica said the quiet part out loud: there is no internet of Maxwell solutions. MaxwellBench is the exam. Anyone can sit it. The training corpus is generated from **public solvers**. The held-out items are **published structures**. The score that matters is whether one set of weights generalizes across regimes, and whether the model can choose the next simulation better than a human grid.
+Most neural Maxwell papers train and score on a private set drawn from one template family: one patch antenna, one metasurface, one board stackup. Those numbers do not transfer. There is also no public corpus of Maxwell solutions large enough to train on, so every group builds its own data and its own exam.
 
-This repository is the specification, the task definitions, the metrics, and the factory that builds the public split. It is not a product studio and it is not a client-data warehouse.
+MaxwellBench is the exam. Training data is produced with public solvers. Held-out items are recreated from published structures. A result counts if one set of weights generalizes across regimes, and if the model allocates a fixed simulation budget better than a random or expert grid.
 
 ## Community
 
-- Discord: [https://discord.gg/gw5WGZWHFS](https://discord.gg/gw5WGZWHFS)
-- X: [https://x.com/Hyper88](https://x.com/Hyper88)
+- [Discord](https://discord.gg/gw5WGZWHFS)
+- [X](https://x.com/Hyper88)
 
-## What the bench measures
+## What is scored
 
-Three claims. Fail any one and you have a surrogate paper, not a foundation model.
+Three tasks. A model that only hits in-distribution S-parameters is a surrogate. That can be useful. It is not what this bench ranks.
 
-| Claim | Meaning |
+| Task | Requirement |
 | --- | --- |
-| **Forward, full fields** | Geometry in. **E** and **H** out, plus S-parameters. Tens of milliseconds. Sub-1 dB magnitude-weighted S-error **and** a field error a physicist will not laugh at. |
-| **One model, three regimes** | Same weights on photonics, microwave, and a two-layer board coupon. Train on two, few-shot the third. |
-| **The model improves the next experiment** | Generation *n* picks the next 10k geometries by information gain. Generation *n+1*, same simulation budget, beats random / Sobol / expert-grid on the held-out split. That curve is ε in public. |
+| Forward fields | Predict **E** and **H** on the evaluation grid, and S-parameters when ports exist. Target: magnitude-weighted S-error below 1 dB on the task band, plus field nRMSE. |
+| Cross-regime | Same weights on photonics, microwave, and a two-layer board coupon. Train on two regimes, evaluate few-shot on the third. |
+| Active learning | Generation *n* selects the next batch of geometries. Generation *n+1*, same solver budget, is compared to random, Sobol, and an expert template grid on the held-out split. |
 
-S-parameters alone are not enough. A model that only hits ports cannot claim it sees the fields.
+S-parameters without fields are reported and are not sufficient. A network that matches ports can still be wrong inside the volume.
 
-## Three regimes
+Full definitions are in [docs/SPEC.md](docs/SPEC.md), [docs/TASKS.md](docs/TASKS.md), and [docs/METRICS.md](docs/METRICS.md).
 
-| Track | Solver (public) | Objects | Outputs |
+## Regimes
+
+| Track | Public solver | Objects | Outputs |
 | --- | --- | --- | --- |
-| `photonic` | [Meep](https://github.com/NanoComp/meep) (FDTD + adjoint) | Metalens, mode converter, meta-atom | Volume / slice fields, transmission, focus metric |
+| `photonic` | [Meep](https://github.com/NanoComp/meep) (FDTD and adjoint) | Metalens, mode converter, meta-atom | Volume or slice fields, transmission, focus metric |
 | `microwave` | [openEMS](https://github.com/thliebig/openEMS) | Pixelated patch, filter, small array tile | Near-field, far-field, S-parameters |
-| `board` | openEMS (FDTD) | Two-layer metal/dielectric coupon | S-parameters + near-field on the coupon |
+| `board` | openEMS | Two-layer metal/dielectric coupon | S-parameters and near-field on the coupon |
 
-Held-out exam items are recreated from published papers (IEEE TAP, Meep inverse-design examples, documented metasurfaces). Those IDs are frozen. They are not used for training.
+Exam items are recreated from published papers (IEEE TAP, Meep inverse-design examples, documented metasurfaces). Their IDs are frozen and are not used for training.
 
-See [docs/SPEC.md](docs/SPEC.md), [docs/TASKS.md](docs/TASKS.md), [docs/METRICS.md](docs/METRICS.md).
+## Data
 
-## Public data means this
+1. Solvers are public: Meep and openEMS. HFSS and CST are not dependencies.
+2. The training corpus is generated here: on the order of 10⁵ to 10⁶ geometry-to-field pairs per regime, sampled from expert-seeded templates.
+3. Published structures are the exam. They are listed, hashed, and frozen.
+4. The split is public. Recipes that make the next million samples cheaper may stay private.
 
-1. **Public solvers** — Meep, openEMS. No HFSS/CST as a required dependency.
-2. **You generate the corpus** — 1–10M geometry → field (and geometry → S) pairs from expert-seeded templates, not uniform random junk.
-3. **Published structures are the exam** — listed, hashed, frozen.
-4. **The exam is open.** Training recipes that make the next million samples cheap can stay closed. The split cannot.
+Report speed and error against Meep or openEMS on the same geometry. A commercial-solver comparison belongs in an appendix, with the project file and the mesh recipe.
 
-Compare speed and error to Meep/openEMS first. A single paid HFSS run on a named public board is allowed as an appendix, with the project file. Do not claim 800,000× against a commercial solver without that protocol.
-
-## Repository layout
+## Layout
 
 ```
-maxwellbench/
-  configs/           # frozen bench + per-regime templates
-  docs/              # spec, tasks, metrics, factory, demo
-  maxwellbench/      # Python package (metrics, tasks, solvers, generate)
-  scripts/           # corpus generation, evaluate, active-learn
+configs/        frozen protocol and per-regime templates
+docs/           spec, tasks, metrics, factory
+maxwellbench/   metrics, task loaders
+scripts/        generate, evaluate, active-learn
+data/manifests/ exam IDs (empty until items are recreated and hashed)
 ```
 
 ## Status
 
-Specification and harness skeleton. Corpus generation and the first frozen split are the next commit, not this one.
+v0.1 is the specification and a small Python harness. The solver farm and the first frozen exam list are not in this commit.
 
-## Install (harness only)
+## Install
 
 ```bash
 pip install -e .
 ```
 
-Solvers are optional extras:
+Optional solver extras:
 
 ```bash
-pip install -e ".[photonic]"   # Meep
-pip install -e ".[microwave]"  # openEMS bindings, if available
+pip install -e ".[photonic]"
+pip install -e ".[microwave]"
 ```
 
 ## License
 
-Apache-2.0 for code. Benchmark item descriptions and frozen IDs are CC-BY-4.0. Recreated published geometries remain under their original paper copyrights; we ship parameters and hashes, not pirated figures.
+Code is Apache-2.0. Benchmark item descriptions and frozen IDs are CC-BY-4.0. Recreated published geometries remain under their original paper copyrights. This repo ships parameters and hashes, not figures.
 
-## Cite
+## Citation
 
-See `CITATION.cff`. Until a paper lands, cite this repository.
+See `CITATION.cff`. Until a paper exists, cite the repository.
