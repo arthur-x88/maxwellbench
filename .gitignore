@@ -1,3 +1,29 @@
+# Company — never commit strategy, fundraising, people, or dual-use notes.
+# MaxwellBench is public. KXY plans are not.
+/confidential/
+/plans/
+/company/
+/internal/
+/kxy/
+**/*.secret
+**/*.confidential
+**/*.confidential.md
+**/*.private.md
+**/*-confidential.*
+.env
+.env.*
+!.env.example
+secrets/
+.secrets/
+credentials/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.kdbx
+
 # Python
 __pycache__/
 *.py[cod]
@@ -8,7 +34,6 @@ dist/
 build/
 .venv/
 venv/
-.env
 
 # Data (generated corpora are too large; keep manifests only)
 data/raw/
