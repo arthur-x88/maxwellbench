@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maxwellbench"
+version = "0.1.0"
+description = "Public evaluation harness for electromagnetic foundation models"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "MaxwellBench authors" }]
+dependencies = [
+  "numpy>=1.24",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+photonic = ["meep"]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+maxwellbench-eval = "maxwellbench.cli:eval_main"
+maxwellbench-generate = "maxwellbench.cli:generate_main"
+
+[tool.setuptools.packages.find]
+include = ["maxwellbench*"]
+
+[tool.setuptools.package-data]
+maxwellbench = ["py.typed"]

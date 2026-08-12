@@ -1,0 +1,17 @@
+regime: board
+solver: openems
+bands_ghz: [1.0, 5.0, 10.0, 20.0, 28.0]
+tasks:
+  - id: brd.coupon
+    grid: [64, 64, 4]
+    fom: s_mask
+  - id: brd.coupler
+    grid: [128, 64, 4]
+    fom: coupling_and_isolation
+templates:
+  - two_layer_pixel
+  - coupled_line
+min_feature_mm: 0.10
+z0_ohm: 50
+layers: 2
+exam_manifest: data/manifests/exam_board.json

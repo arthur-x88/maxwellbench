@@ -1,0 +1,19 @@
+regime: photonic
+solver: meep
+resolution_px_per_um: 20
+wavelengths_um: [1.31, 1.55]
+tasks:
+  - id: pho.metalens
+    grid: [128, 128, 32]
+    fom: focusing_efficiency
+  - id: pho.modeconv
+    grid: [256, 64, 32]
+    fom: target_mode_transmission
+  - id: pho.metaatom
+    grid: [64, 64, 32]
+    fom: complex_t_r
+templates:
+  - binary_permittivity_2d
+  - levelset_2d
+min_feature_um: 0.08
+exam_manifest: data/manifests/exam_photonic.json

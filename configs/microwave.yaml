@@ -1,0 +1,20 @@
+regime: microwave
+solver: openems
+bands_ghz: [2.4, 5.8, 10.0, 24.0, 28.0]
+tasks:
+  - id: mw.patch
+    grid: [64, 64, 8]
+    fom: s11_bw_and_gain
+  - id: mw.filter
+    grid: [128, 32, 8]
+    fom: s_mask
+  - id: mw.tile
+    grid: [128, 128, 8]
+    fom: embedded_s_and_sep
+templates:
+  - pixel_patch_inset
+  - pixel_patch_probe
+  - pixel_filter
+min_feature_mm: 0.15
+z0_ohm: 50
+exam_manifest: data/manifests/exam_microwave.json

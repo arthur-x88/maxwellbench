@@ -1,0 +1,22 @@
+# Frozen bench protocol. Bump configs.version when exam IDs or formulas change.
+name: maxwellbench
+version: 0.1.0
+splits:
+  exam_never_train: true
+  k_shot: [0, 8, 32, 128]
+regimes: [photonic, microwave, board]
+active_learn:
+  n0: 2048
+  batch: 256
+  b_max: 16384
+  baselines: [random, sobol, uncertainty_ensemble, expert_grid]
+  exam_nrmse_bar: 0.15
+forward_pass_bar:
+  s_wmae_db: 1.0
+solvers:
+  photonic: meep
+  microwave: openems
+  board: openems
+time_convention:
+  storage: e_plus_j_omega_t
+  meep: e_minus_j_omega_t

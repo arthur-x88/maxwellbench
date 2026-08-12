@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: MaxwellBench
+message: If you use this benchmark, please cite this repository.
+type: software
+authors:
+  - name: MaxwellBench authors
+version: 0.1.0
+date-released: "2026-08-12"
+license: Apache-2.0
+url: https://github.com/TODO/maxwellbench
