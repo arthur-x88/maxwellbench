@@ -1,0 +1,102 @@
+{
+  "regime": "photonic",
+  "oracle": "meep2d",
+  "items": [
+    {
+      "id": "pho.meep.straight_wg",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "straight_wg",
+        "cell": [
+          16.0,
+          8.0
+        ],
+        "resolution": 20,
+        "frequency": 0.15,
+        "pml": 1.0,
+        "until": 200.0,
+        "w": 1.0,
+        "eps": 12.0,
+        "src_x": -6.0
+      },
+      "field_file": "data/exam_fields/pho.meep.straight_wg.npz"
+    },
+    {
+      "id": "pho.meep.bend90",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "bend90",
+        "cell": [
+          16.0,
+          16.0
+        ],
+        "resolution": 18,
+        "frequency": 0.15,
+        "pml": 1.0,
+        "until": 280.0,
+        "w": 1.0,
+        "eps": 12.0
+      },
+      "field_file": "data/exam_fields/pho.meep.bend90.npz"
+    },
+    {
+      "id": "pho.meep.y_split",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "y_split",
+        "cell": [
+          16.0,
+          10.0
+        ],
+        "resolution": 18,
+        "frequency": 0.15,
+        "pml": 1.0,
+        "until": 260.0,
+        "w": 1.0,
+        "eps": 12.0,
+        "split": 2.5
+      },
+      "field_file": "data/exam_fields/pho.meep.y_split.npz"
+    },
+    {
+      "id": "pho.meep.holey_cavity",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "holey_cavity",
+        "cell": [
+          16.0,
+          8.0
+        ],
+        "resolution": 20,
+        "frequency": 0.25,
+        "pml": 1.0,
+        "until": 240.0,
+        "w": 1.0,
+        "eps": 12.0,
+        "r": 0.25,
+        "n_holes": 3
+      },
+      "field_file": "data/exam_fields/pho.meep.holey_cavity.npz"
+    },
+    {
+      "id": "pho.meep.ring",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "ring",
+        "cell": [
+          16.0,
+          16.0
+        ],
+        "resolution": 16,
+        "frequency": 0.15,
+        "pml": 1.0,
+        "until": 360.0,
+        "w": 1.0,
+        "eps": 12.0,
+        "r": 1.8,
+        "pad": 0.15
+      },
+      "field_file": "data/exam_fields/pho.meep.ring.npz"
+    }
+  ]
+}

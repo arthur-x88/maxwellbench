@@ -42,6 +42,7 @@ data/fields/
 *.h5
 *.hdf5
 *.npz
+!data/exam_fields/*.npz
 *.nmd
 *.out
 *.log

@@ -4,7 +4,7 @@ A public evaluation harness for electromagnetic foundation models.
 
 Most neural Maxwell papers train and score on a private set drawn from one template family: one patch antenna, one metasurface, one board stackup. Those numbers do not transfer. There is also no public corpus of Maxwell solutions large enough to train on, so every group builds its own data and its own exam.
 
-MaxwellBench is the exam. v0.1.1 scores forward fields and S-parameters on 15 frozen closed-form items (layered media, slabs, TE10). A later freeze will add Meep / openEMS 3D structures. Inverse design and active learning are specified and not scored yet.
+MaxwellBench is the exam. v0.2 scores **forward Ez** on 15 frozen 2D Meep FDTD cases (waveguides, cavity, ring, PEC slit, microstrip-like traces). Ground truth is DFT fields from Meep 1.34. Inverse design, 3D, and active learning are specified and not scored yet. An analytic TMM/TE10 track remains as `--track analytic`.
 
 ## Community
 
@@ -53,14 +53,14 @@ data/manifests/ exam IDs (empty until items are recreated and hashed)
 
 ## Status
 
-v0.1.1 is a runnable forward exam: 15 analytic items, a scorer, and an incident-wave baseline. The 3D FDTD exam, inverse track, and active-learn track are not shipping.
+v0.2 is a runnable 2D FDTD exam. Fields live in `data/exam_fields/`. Regenerating them requires Meep 1.34 (`scripts/run_meep_exam.sh`).
 
 ```bash
 pip install -e .
 maxwellbench-eval --baseline incident --out scores.json
 ```
 
-Published incident baseline (see `data/baselines/incident.json`): mean aligned field nRMSE 0.738, mean S-parameter wMAE 84.1 dB. Beat both.
+Null-field baseline on the Meep track: aligned nRMSE = 1.0. Beat that. Analytic-track numbers are in `data/baselines/incident.json`.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # MaxwellBench specification
 
-Status: v0.1.1 scores a frozen **analytic** exam (TMM, slab, TE10). Meep/openEMS items are specified and not in the manifests yet. Version the YAML in `configs/bench.yaml`, not this prose.
+Status: v0.2 scores a frozen **2D Meep** exam (DFT Ez). An analytic TMM/TE10 track is still available via `--track analytic`. Version the YAML in `configs/bench.yaml`, not this prose.
 
 ## Purpose
 

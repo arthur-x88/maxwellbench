@@ -20,10 +20,16 @@ def eval_main(argv: list[str] | None = None) -> None:
     )
     p.add_argument("--out", type=Path, default=Path("scores.json"))
     p.add_argument("--regime", action="append", dest="regimes")
+    p.add_argument("--track", action="append", dest="tracks", choices=["analytic", "meep"])
     args = p.parse_args(argv)
     if args.predictions is None and args.baseline is None:
         p.error("pass --predictions DIR or --baseline incident")
-    result = evaluate(predictions=args.predictions, baseline=args.baseline, regimes=args.regimes)
+    result = evaluate(
+        predictions=args.predictions,
+        baseline=args.baseline,
+        regimes=args.regimes,
+        tracks=args.tracks,
+    )
     write_scores(result, args.out)
     s = result["summary"]
     print(f"{result['bench']} {result['version']}")

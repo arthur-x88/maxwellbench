@@ -1,0 +1,133 @@
+{
+  "bench": "maxwellbench",
+  "version": "0.2.0",
+  "baseline": "incident",
+  "summary": {
+    "n_items": 15,
+    "n_scored": 15,
+    "e_nrmse_aligned_mean": 1.0,
+    "s_wmae_db_mean": null
+  },
+  "items": [
+    {
+      "id": "pho.meep.straight_wg",
+      "regime": "photonic",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "pho.meep.bend90",
+      "regime": "photonic",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "pho.meep.y_split",
+      "regime": "photonic",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "pho.meep.holey_cavity",
+      "regime": "photonic",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "pho.meep.ring",
+      "regime": "photonic",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "mw.meep.cyl_scatter",
+      "regime": "microwave",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "mw.meep.pec_slit",
+      "regime": "microwave",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "mw.meep.pec_guide",
+      "regime": "microwave",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "mw.meep.strip_on_slab",
+      "regime": "microwave",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "mw.meep.two_cyl",
+      "regime": "microwave",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "brd.meep.microstrip2d",
+      "regime": "board",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "brd.meep.coupled",
+      "regime": "board",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "brd.meep.step",
+      "regime": "board",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "brd.meep.gap",
+      "regime": "board",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    },
+    {
+      "id": "brd.meep.stub",
+      "regime": "board",
+      "oracle": "meep2d",
+      "missing": false,
+      "e_nrmse": 1.0,
+      "e_nrmse_aligned": 1.0
+    }
+  ]
+}

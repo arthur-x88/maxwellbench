@@ -16,6 +16,6 @@ def test_field_nrmse_zero():
 
 def test_bench_loads_eight_tasks():
     ids = [t.id for t in all_tasks()]
-    assert bench_config()["version"] == "0.1.1"
+    assert bench_config()["version"] == "0.2.0"
     assert len(ids) == 8
     assert "pho.metalens" in ids and "brd.coupon" in ids

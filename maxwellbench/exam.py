@@ -13,17 +13,30 @@ from maxwellbench.tasks import ROOT
 MANIFESTS = ROOT / "data" / "manifests"
 
 
-def load_exam(regimes: list[str] | None = None) -> list[dict]:
+def load_exam(regimes: list[str] | None = None, tracks: list[str] | None = None) -> list[dict]:
     names = regimes or ["photonic", "microwave", "board"]
+    if tracks is None:
+        if (MANIFESTS / "exam_photonic_meep.json").is_file():
+            tracks = ["meep"]
+        else:
+            tracks = ["analytic"]
     items: list[dict] = []
+    suffixes = []
+    if "analytic" in tracks:
+        suffixes.append("")
+    if "meep" in tracks:
+        suffixes.append("_meep")
     for name in names:
-        path = MANIFESTS / f"exam_{name}.json"
-        with path.open(encoding="utf-8") as f:
-            payload = json.load(f)
-        for item in payload.get("items", []):
-            item = dict(item)
-            item["regime"] = payload["regime"]
-            items.append(item)
+        for suffix in suffixes:
+            path = MANIFESTS / f"exam_{name}{suffix}.json"
+            if not path.is_file():
+                continue
+            with path.open(encoding="utf-8") as f:
+                payload = json.load(f)
+            for item in payload.get("items", []):
+                item = dict(item)
+                item["regime"] = payload["regime"]
+                items.append(item)
     return items
 
 
@@ -97,6 +110,12 @@ def ground_truth(item: dict) -> dict[str, np.ndarray]:
             n=p.get("n", 1.0),
         )
         return out
+    if kind == "meep2d":
+        path = ROOT / item["field_file"]
+        if not path.is_file():
+            raise FileNotFoundError(f"{item['id']}: missing {path}; run scripts/generate_meep_exam.py")
+        with np.load(path) as z:
+            return {"E": z["E"]}
     raise ValueError(f"{item['id']}: unknown oracle {kind}")
 
 
@@ -107,6 +126,9 @@ def incident_baseline(item: dict) -> dict[str, np.ndarray]:
     pred: dict[str, np.ndarray] = {}
     kind = item["oracle"]
     p = item["params"]
+    if kind == "meep2d":
+        pred["E"] = np.zeros_like(ground_truth(item)["E"])
+        return pred
     if kind in {"tmm", "te10"}:
         n_f = len(p["frequencies_hz"])
         s = np.zeros((2, n_f), dtype=np.complex128)

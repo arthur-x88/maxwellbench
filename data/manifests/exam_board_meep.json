@@ -1,0 +1,101 @@
+{
+  "regime": "board",
+  "oracle": "meep2d",
+  "items": [
+    {
+      "id": "brd.meep.microstrip2d",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "microstrip2d",
+        "cell": [
+          14.0,
+          6.0
+        ],
+        "resolution": 20,
+        "frequency": 0.14,
+        "pml": 0.8,
+        "until": 220.0,
+        "w": 0.6,
+        "h": 0.4,
+        "eps": 4.0
+      },
+      "field_file": "data/exam_fields/brd.meep.microstrip2d.npz"
+    },
+    {
+      "id": "brd.meep.coupled",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "coupled",
+        "cell": [
+          14.0,
+          6.0
+        ],
+        "resolution": 20,
+        "frequency": 0.14,
+        "pml": 0.8,
+        "until": 240.0,
+        "w": 0.5,
+        "gap": 0.25,
+        "h": 0.4,
+        "eps": 4.0
+      },
+      "field_file": "data/exam_fields/brd.meep.coupled.npz"
+    },
+    {
+      "id": "brd.meep.step",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "step",
+        "cell": [
+          14.0,
+          6.0
+        ],
+        "resolution": 20,
+        "frequency": 0.14,
+        "pml": 0.8,
+        "until": 220.0,
+        "h": 0.4,
+        "eps": 4.0
+      },
+      "field_file": "data/exam_fields/brd.meep.step.npz"
+    },
+    {
+      "id": "brd.meep.gap",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "gap",
+        "cell": [
+          14.0,
+          6.0
+        ],
+        "resolution": 20,
+        "frequency": 0.14,
+        "pml": 0.8,
+        "until": 220.0,
+        "gap": 0.35,
+        "h": 0.4,
+        "eps": 4.0
+      },
+      "field_file": "data/exam_fields/brd.meep.gap.npz"
+    },
+    {
+      "id": "brd.meep.stub",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "stub",
+        "cell": [
+          14.0,
+          8.0
+        ],
+        "resolution": 18,
+        "frequency": 0.14,
+        "pml": 0.8,
+        "until": 260.0,
+        "stub": 1.8,
+        "h": 0.4,
+        "eps": 4.0
+      },
+      "field_file": "data/exam_fields/brd.meep.stub.npz"
+    }
+  ]
+}

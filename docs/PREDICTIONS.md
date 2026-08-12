@@ -1,42 +1,29 @@
 # Submitting a score
 
-v0.1.1 scores **forward fields and S-parameters** on 15 frozen analytic items. Inverse design, few-shot transfer, and active learning are specified and not scored yet.
-
-## Run
+Default track (`meep`) scores **forward Ez** on 15 frozen 2D FDTD cases. Ground truth is Meep 1.34 DFT fields in `data/exam_fields/{id}.npz`. Inverse design and 3D are not scored.
 
 ```bash
 pip install -e .
 maxwellbench-eval --baseline incident --out scores.json
 maxwellbench-eval --predictions ./preds --out scores.json
+maxwellbench-eval --track analytic --baseline incident --out scores_analytic.json
 ```
 
-`preds/` contains one file per item: `{id}.npz`.
+`preds/` contains one `{id}.npz` per item.
 
-| key | shape | notes |
+| Track | key | shape |
 | --- | --- | --- |
-| `E` | matches the item grid | complex128, SI, e^{+jωt} |
-| `S` | `(2, F)` | `S[0]=S11`, `S[1]=S21`, only on `tmm` and `te10` items |
+| meep | `E` | 2D complex, same as the shipped field file |
+| analytic | `E`, optional `S` | see item `grid`; `S` is `(2, F)` = S11, S21 |
 
-Grid axes are in the item JSON (`grid.z`, optional `grid.x`). `E` is `shape (nz,)` for 1D TMM and `(nz, nx)` for slab2d / te10.
+Phase of `E` is aligned by one global factor before nRMSE. Do not rescale amplitude.
 
-Phase of `E` is aligned with a single global factor before nRMSE. Do not rescale amplitude.
+Meep cases are defined in `maxwellbench/meep_cases.py`. To regenerate labels (needs Meep 1.34 in WSL or Linux):
 
-## What is on the exam
+```bash
+scripts/run_meep_exam.sh
+```
 
-Closed-form Maxwell, not FDTD:
+The published Meep baseline is a zero field (nRMSE 1.0). The analytic incident-wave baseline is `data/baselines/incident.json`.
 
-| Oracle | Physics |
-| --- | --- |
-| `tmm` | Stratton / transfer-matrix stack. S11, S21, E(z). |
-| `slab2d` | One dielectric slab, plane wave at an angle, E(x,z). |
-| `te10` | Matched rectangular TE10 section, including cutoff. |
-
-Five items in each of `photonic`, `microwave`, `board`. IDs live in `data/manifests/exam_*.json`. Ground truth is computed from those parameters. There is no downloaded field dump.
-
-The published baseline is `--baseline incident`: no stack, S21=1, incident wave only.
-
-## What a row must include
-
-`scores.json` from this CLI, plus in the PR or issue: parameter count, what you trained on, wall-clock, and `configs/bench.yaml` version.
-
-A Meep / openEMS 3D exam is not in this version. Do not compare these numbers to HFSS.
+A row is `scores.json` plus: parameter count, training data, wall-clock, `configs/bench.yaml` version.

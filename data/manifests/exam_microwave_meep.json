@@ -1,0 +1,99 @@
+{
+  "regime": "microwave",
+  "oracle": "meep2d",
+  "items": [
+    {
+      "id": "mw.meep.cyl_scatter",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "cylinder",
+        "cell": [
+          12.0,
+          12.0
+        ],
+        "resolution": 20,
+        "frequency": 0.2,
+        "pml": 1.0,
+        "until": 180.0,
+        "r": 0.6,
+        "eps": 4.0,
+        "src_x": -4.5
+      },
+      "field_file": "data/exam_fields/mw.meep.cyl_scatter.npz"
+    },
+    {
+      "id": "mw.meep.pec_slit",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "pec_slit",
+        "cell": [
+          14.0,
+          10.0
+        ],
+        "resolution": 20,
+        "frequency": 0.18,
+        "pml": 1.0,
+        "until": 200.0,
+        "gap": 0.8,
+        "th": 0.3
+      },
+      "field_file": "data/exam_fields/mw.meep.pec_slit.npz"
+    },
+    {
+      "id": "mw.meep.pec_guide",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "pec_guide",
+        "cell": [
+          14.0,
+          6.0
+        ],
+        "resolution": 20,
+        "frequency": 0.22,
+        "pml": 1.0,
+        "until": 200.0,
+        "w": 2.0
+      },
+      "field_file": "data/exam_fields/mw.meep.pec_guide.npz"
+    },
+    {
+      "id": "mw.meep.strip_on_slab",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "strip_on_slab",
+        "cell": [
+          14.0,
+          8.0
+        ],
+        "resolution": 18,
+        "frequency": 0.16,
+        "pml": 1.0,
+        "until": 220.0,
+        "w": 1.2,
+        "th": 0.2,
+        "h_sub": 1.0,
+        "eps_sub": 4.0
+      },
+      "field_file": "data/exam_fields/mw.meep.strip_on_slab.npz"
+    },
+    {
+      "id": "mw.meep.two_cyl",
+      "oracle": "meep2d",
+      "params": {
+        "geometry": "two_cyl",
+        "cell": [
+          14.0,
+          10.0
+        ],
+        "resolution": 18,
+        "frequency": 0.19,
+        "pml": 1.0,
+        "until": 200.0,
+        "r": 0.45,
+        "eps": 6.0,
+        "sep": 1.6
+      },
+      "field_file": "data/exam_fields/mw.meep.two_cyl.npz"
+    }
+  ]
+}

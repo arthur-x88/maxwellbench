@@ -49,8 +49,9 @@ def evaluate(
     predictions: Path | None = None,
     baseline: str | None = None,
     regimes: list[str] | None = None,
+    tracks: list[str] | None = None,
 ) -> dict:
-    items = load_exam(regimes)
+    items = load_exam(regimes, tracks=tracks)
     rows = []
     for item in items:
         if baseline == "incident":
@@ -80,6 +81,7 @@ def evaluate(
     }
 
 
-def write_scores(result: dict, dest: Path) -> None:
+def write_scores(result: dict, dest: Path | str) -> None:
+    dest = Path(dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(result, indent=2), encoding="utf-8")
