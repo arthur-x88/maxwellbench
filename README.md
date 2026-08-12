@@ -6,6 +6,11 @@ There is no ImageNet for Maxwell. Literature surrogates are trained and scored o
 
 This repository is the specification, the task definitions, the metrics, and the factory that builds the public split. It is not a product studio and it is not a client-data warehouse.
 
+## Community
+
+- Discord: [https://discord.gg/gw5WGZWHFS](https://discord.gg/gw5WGZWHFS)
+- X: [https://x.com/Hyper88](https://x.com/Hyper88)
+
 ## What the bench measures
 
 Three claims. Fail any one and you have a surrogate paper, not a foundation model.
